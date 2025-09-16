@@ -23,7 +23,12 @@ and the environment will be automatically solved and activated when necessary.
 
 
 ```sh
+# UV env
 uv run pytest
+
+# conda env
+pip install -e .
+pytest tests/test_...py
 ```
 
 Initially, all tests should fail with `NotImplementedError`s.

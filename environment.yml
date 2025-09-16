@@ -1,0 +1,26 @@
+name: cs336_basics
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - psutil>=6.1.1
+  - pytest>=8.3.4
+  - regex>=2024.11.6
+  - tqdm>=4.67.1
+  - pip:
+      - einops>=0.8.1
+      - einx>=0.3.0
+      - jaxtyping>=0.3.0
+      - submitit>=1.5.2
+      - tiktoken>=0.9.0
+      - wandb>=0.19.7
+      - ty>=0.0.1a16
+      # torch pinned depending on platform
+      # For non-Mac or Apple Silicon:
+      - "torch~=2.6.0; platform_system != 'Darwin' or platform_machine != 'x86_64'"
+      # For Intel Macs:
+      - "torch~=2.2.2; platform_system == 'Darwin' and platform_machine == 'x86_64'"
