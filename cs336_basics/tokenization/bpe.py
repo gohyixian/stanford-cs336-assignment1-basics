@@ -14,14 +14,6 @@ def init_vocab_gpt2(
 ) -> tuple[tuple[dict[int, bytes]], int]:
     """Initialises a vocabulary dict in GPT-2 style."""
     
-    # # Initial vocab: all bytes
-    # vocab: dict[int, bytes] = {i: tok.encode("utf-8") for i,tok in enumerate(special_tokens)}  # {byte int repr : byte} mapping
-    # for i in range(256):
-    #     id = len(special_tokens) + i
-    #     vocab[id] = bytes([i])
-    # merges: list[tuple[bytes, bytes]] = []  # as a track record for the merges done
-    # new_int_id = len(special_tokens) + 256  # starting ID for new tokens
-    
     # init vocab: all bytes
     vocab: dict[int, bytes] = {i: tok.encode("utf-8") for i,tok in enumerate(special_tokens)}  # {byte int repr : byte} mapping
     
@@ -75,8 +67,19 @@ def train_bpe(
     assert os.path.exists(input_path), f"File not found: {input_path}"
     
     
-    # init vocab in gpt-2 style
+    # ##########################################
+    # ## Step 1: Initialise Vocab (all pairs) ##
+    # ##########################################
+    # vocab: dict[int, bytes] = {i: tok.encode("utf-8") for i,tok in enumerate(special_tokens)}  # {byte int repr : byte} mapping
+    # for i in range(256):
+    #     id = len(special_tokens) + i
+    #     vocab[id] = bytes([i])
+    # new_int_id = len(special_tokens) + 256  # starting ID for new tokens
+    
+    # ---------------------
+    # Optional: init vocab in gpt-2 style (works too, but different vocab order - customised)
     vocab, new_int_id = init_vocab_gpt2(special_tokens)
+    # ---------------------
     
     # as a track record for the merges done
     merges: list[tuple[bytes, bytes]] = []
@@ -87,7 +90,7 @@ def train_bpe(
     
     
     ############################################################
-    ## Step 1: Collect pre-tokens & convert to byte sequences ##
+    ## Step 2: Collect pre-tokens & convert to byte sequences ##
     ############################################################
     
     pre_token_counts: Counter[tuple[int, ...]] = Counter()
@@ -121,7 +124,7 @@ def train_bpe(
     
     
     #####################################
-    ## Step 2: Merge pairs iteratively ##
+    ## Step 3: Merge pairs iteratively ##
     #####################################
     
     # NOTE: one iteration merges one (a,b) pair, and adds one new item to the vocab
@@ -144,7 +147,9 @@ def train_bpe(
         # find the most common pair
         # =========================
         # NOTE: deterministically break ties in pairs with same frequency by preferring the lexicographically greater pair.
-        pair, _ = max(adj_pair_counts.items(), key=lambda kv: (kv[1], kv[0]))
+        # NOTE: measure greater pair on byte pairs `(vocab[p[0]], vocab[p[1]])`, NOT byte int pairs `p`
+        pair = max(adj_pair_counts, key=lambda p: (adj_pair_counts[p], (vocab[p[0]], vocab[p[1]])), default=None)
+        if pair is None: break
         a, b = pair
         
         

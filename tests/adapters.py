@@ -591,6 +591,7 @@ def run_train_bpe(
     """
     
     from cs336_basics.tokenization.bpe import train_bpe
+    # from cs336_basics.tokenization.weixin import train_bpe
     
     vocab, merges = train_bpe(input_path, vocab_size, special_tokens)
     
