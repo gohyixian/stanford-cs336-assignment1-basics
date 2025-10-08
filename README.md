@@ -27,8 +27,17 @@ and the environment will be automatically solved and activated when necessary.
 uv run pytest
 
 # conda env
+# refer environment.yml for creation
 pip install -e .
-pytest tests/test_...py
+
+# For CPU/Mem/GPU profiling:
+pip install scalene  
+# Usage: scalene -m src.main / scalene pytest tests/test_train_bpe.py
+
+
+# to run
+conda activate cs336_basics
+pytest tests/test_train_bpe.py
 ```
 
 Initially, all tests should fail with `NotImplementedError`s.

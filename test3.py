@@ -1,6 +1,7 @@
-# from cs336_basics.tokenization.bpe import train_bpe
-from cs336_basics.tokenization.weixin import train_bpe
+from cs336_basics.tokenization.bpe import train_bpe
+# from cs336_basics.tokenization.weixin import train_bpe
 
+# scalene test3.py
 
 
 FILE = "tests/fixtures/corpus.en"
