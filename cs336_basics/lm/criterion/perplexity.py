@@ -1,7 +1,7 @@
 """Custom Perplexity metric implementation."""
 
 import torch
-from jaxtyping import Float
+from jaxtyping import Float, Int
 
 from cs336_basics.lm.criterion.cross_entropy import cross_entropy
 
