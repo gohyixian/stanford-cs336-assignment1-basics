@@ -5,9 +5,9 @@ import torch
 from jaxtyping import Bool, Float, Int
 from einops import einsum, rearrange, repeat
 
-from cs336_basics.model.layers.linear import Linear
-from cs336_basics.model.layers.activations import softmax
-from cs336_basics.model.layers.embedding import RotaryPositionalEmbedding
+from cs336_basics.lm.arch.layers.linear import Linear
+from cs336_basics.lm.arch.layers.activations import softmax
+from cs336_basics.lm.arch.layers.embedding import RotaryPositionalEmbedding
 
 
 

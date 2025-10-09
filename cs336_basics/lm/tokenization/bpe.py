@@ -5,7 +5,7 @@ import regex as re
 from collections import Counter
 from typing import Iterable, Iterator
 from cs336_basics.pretokenization_example import find_chunk_boundaries
-from cs336_basics.model.tokenization.pretokenization import yield_pretokens
+from cs336_basics.lm.tokenization.pretokenization import yield_pretokens
 
 
 

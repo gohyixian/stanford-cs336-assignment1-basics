@@ -3,8 +3,8 @@
 import torch
 from jaxtyping import Float
 
-from cs336_basics.model.layers.linear import Linear
-from cs336_basics.model.layers.activations import SiLU
+from cs336_basics.lm.arch.layers.linear import Linear
+from cs336_basics.lm.arch.layers.activations import SiLU
 
 
 

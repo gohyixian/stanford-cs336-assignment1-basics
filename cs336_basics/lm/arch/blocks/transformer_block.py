@@ -3,10 +3,10 @@
 import torch
 from jaxtyping import Float, Int
 
-from cs336_basics.model.layers.ffn import SwiGLU
-from cs336_basics.model.layers.rmsnorm import RMSNorm
-from cs336_basics.model.layers.embedding import RotaryPositionalEmbedding
-from cs336_basics.model.layers.attention import CausalMultiHeadSelfAttention
+from cs336_basics.lm.arch.layers.ffn import SwiGLU
+from cs336_basics.lm.arch.layers.rmsnorm import RMSNorm
+from cs336_basics.lm.arch.layers.embedding import RotaryPositionalEmbedding
+from cs336_basics.lm.arch.layers.attention import CausalMultiHeadSelfAttention
 
 
 

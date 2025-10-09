@@ -3,10 +3,10 @@
 import torch
 from jaxtyping import Float, Int
 
-from cs336_basics.model.layers.linear import Linear
-from cs336_basics.model.layers.rmsnorm import RMSNorm
-from cs336_basics.model.layers.embedding import Embedding
-from cs336_basics.model.blocks.transformer_block import TransformerBlock
+from cs336_basics.lm.arch.layers.linear import Linear
+from cs336_basics.lm.arch.layers.rmsnorm import RMSNorm
+from cs336_basics.lm.arch.layers.embedding import Embedding
+from cs336_basics.lm.arch.blocks.transformer_block import TransformerBlock
 
 
 

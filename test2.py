@@ -1,5 +1,5 @@
 import torch
-from cs336_basics.model.layers.activations import softmax
+from cs336_basics.lm.arch.layers.activations import softmax
 
 
 inf = torch.Tensor([float("-inf")])

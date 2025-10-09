@@ -29,7 +29,7 @@ def run_linear(
         Float[Tensor, "... d_out"]: The transformed output of your linear module.
     """
     
-    from cs336_basics.model.layers.linear import Linear
+    from cs336_basics.lm.arch.layers.linear import Linear
     
     layer = Linear(d_in, d_out)
     
@@ -64,7 +64,7 @@ def run_embedding(
         Float[Tensor, "... d_model"]: Batch of embeddings returned by your Embedding layer.
     """
     
-    from cs336_basics.model.layers.embedding import Embedding
+    from cs336_basics.lm.arch.layers.embedding import Embedding
     
     embed = Embedding(vocab_size, d_model)
     
@@ -110,7 +110,7 @@ def run_swiglu(
     # swiglu.w2.weight.data = w2_weight
     # swiglu.w3.weight.data = w3_weight
     
-    from cs336_basics.model.layers.ffn import SwiGLU
+    from cs336_basics.lm.arch.layers.ffn import SwiGLU
     
     swiglu = SwiGLU(d_model, d_ff)
     
@@ -146,7 +146,7 @@ def run_scaled_dot_product_attention(
         Float[Tensor, " ... queries d_v"]: Output of SDPA
     """
     
-    from cs336_basics.model.layers.attention import scaled_dot_product_attention
+    from cs336_basics.lm.arch.layers.attention import scaled_dot_product_attention
     
     out = scaled_dot_product_attention(Q, K, V, mask)
     
@@ -185,7 +185,7 @@ def run_multihead_self_attention(
         implementation with the given QKV projection weights and input features.
     """
     
-    from cs336_basics.model.layers.attention import CausalMultiHeadSelfAttention
+    from cs336_basics.lm.arch.layers.attention import CausalMultiHeadSelfAttention
     
     causal_mha = CausalMultiHeadSelfAttention(d_model, num_heads)
     
@@ -241,8 +241,8 @@ def run_multihead_self_attention_with_rope(
         implementation with the given QKV projection weights and input features.
     """
     
-    from cs336_basics.model.layers.embedding import RotaryPositionalEmbedding
-    from cs336_basics.model.layers.attention import CausalMultiHeadSelfAttention
+    from cs336_basics.lm.arch.layers.embedding import RotaryPositionalEmbedding
+    from cs336_basics.lm.arch.layers.attention import CausalMultiHeadSelfAttention
     
     d_k = d_model // num_heads
     rope = RotaryPositionalEmbedding(theta, d_k, max_seq_len)
@@ -283,7 +283,7 @@ def run_rope(
         Float[Tensor, " ... sequence_length d_k"]: Tensor with RoPEd input.
     """
     
-    from cs336_basics.model.layers.embedding import RotaryPositionalEmbedding
+    from cs336_basics.lm.arch.layers.embedding import RotaryPositionalEmbedding
     
     rope = RotaryPositionalEmbedding(theta, d_k, max_seq_len)
     
@@ -363,7 +363,7 @@ def run_transformer_block(
         running the Transformer block on the input features while using RoPE.
     """
     
-    from cs336_basics.model.blocks.transformer_block import TransformerBlock
+    from cs336_basics.lm.arch.blocks.transformer_block import TransformerBlock
     
     block = TransformerBlock(d_model, num_heads, d_ff, max_seq_len, theta)
     
@@ -455,7 +455,7 @@ def run_transformer_lm(
         next-word distribution for each token.
     """
     
-    from cs336_basics.model.models.transformer_lm import TransformerLM
+    from cs336_basics.lm.arch.models.transformer_lm import TransformerLM
     
     net = TransformerLM(vocab_size, context_length, d_model, num_layers, num_heads, d_ff, rope_theta)
     
@@ -488,7 +488,7 @@ def run_rmsnorm(
         RMSNorm of the `in_features`.
     """
     
-    from cs336_basics.model.layers.rmsnorm import RMSNorm
+    from cs336_basics.lm.arch.layers.rmsnorm import RMSNorm
     
     rmsnorm = RMSNorm(d_model, eps)
     
@@ -555,7 +555,7 @@ def run_softmax(in_features: Float[Tensor, " ..."], dim: int) -> Float[Tensor, "
         softmax normalizing the specified `dim`.
     """
     
-    from cs336_basics.model.layers.activations import softmax
+    from cs336_basics.lm.arch.layers.activations import softmax
     
     out = softmax(in_features, dim)
     
@@ -688,7 +688,7 @@ def get_tokenizer(
         A BPE tokenizer that uses the provided vocab, merges, and special tokens.
     """
     
-    from cs336_basics.model.tokenization.bpe import BPETokenizer
+    from cs336_basics.lm.tokenization.bpe import BPETokenizer
     
     return BPETokenizer(vocab, merges, special_tokens)
 
@@ -721,7 +721,7 @@ def run_train_bpe(
                 Merges are ordered by order of creation.
     """
     
-    from cs336_basics.model.tokenization.bpe import train_bpe
+    from cs336_basics.lm.tokenization.bpe import train_bpe
     
     vocab, merges = train_bpe(input_path, vocab_size, special_tokens)
     

@@ -1,0 +1,29 @@
+gpt-2-xl
+====================
+Number of Trainable Parameters (deduplicated)    : 2,127,057,600 params  |  8,508,230,400 bytes  (  7.924 GB)  |  4,356,213,964,800 FLOPs for seq_len=1024
+Number of Trainable Parameters                   : 2,127,057,600 params  |  8,508,230,400 bytes  (  7.924 GB)  |  4,356,213,964,800 FLOPs for seq_len=1024
+Number of Trainable Parameters (drop tok emb)    : 2,046,646,400 params  |  8,186,585,600 bytes  (  7.624 GB)  |  4,191,531,827,200 FLOPs for seq_len=1024
+Number of Trainable Parameters (attn)            :   491,520,000 params  |  1,966,080,000 bytes  (  1.831 GB)  |  1,006,632,960,000 FLOPs for seq_len=1024
+Number of Trainable Parameters (ffn)             : 1,554,971,200 params  |  6,219,884,800 bytes  (  5.793 GB)  |  3,184,581,017,600 FLOPs for seq_len=1024
+
+============================================================
+MATRIX MULTIPLICATION COUNTS
+============================================================
+Per Transformer Layer:
+  Attention QKV projections   : 3
+  Attention Q@K^T             : 1
+  Attention attn@V            : 1
+  Attention output proj       : 1
+  FFN W1,W3 projections       : 2
+  FFN W2 projection           : 1
+  Total per layer             : 9
+
+Total for 48 layers:
+  Total attention operations  : 288
+  Total FFN operations        : 144
+  Total all layers            : 432
+
+Final output:
+  LM head projection          : 1
+
+TOTAL MATRIX MULTIPLICATIONS  : 433
